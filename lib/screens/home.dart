@@ -16,8 +16,16 @@ class _HomeState extends State<Home> {
 
     final place = ModalRoute.of(context)?.settings.arguments as WorldTime;
 
+    String bgImage = place.isDayTime ? 'day.jpg' : 'night.png';
+
     return Scaffold(
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/$bgImage'),
+            fit: BoxFit.cover
+          )
+        ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 80, 0, 0),
           child: Center(
@@ -30,6 +38,10 @@ class _HomeState extends State<Home> {
                   },
                   icon: Icon(Icons.edit_location),
                   label: Text('Choose Location'),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.white10
+                  ),
                 ),
                 SizedBox(height: 60,),
                 Row(
@@ -37,14 +49,19 @@ class _HomeState extends State<Home> {
                   children: [
                     Text(
                         place.location,
-                      style: Theme.of(context).textTheme.headline3,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                        color: Colors.white
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 20),
                 Text(
                     place.time,
-                  style: Theme.of(context).textTheme.displayMedium,
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
               ],
             ),
