@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:world_time_app/services/world_time.dart';
 
 class Home extends StatefulWidget {
 
@@ -11,12 +10,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  late Map place = {};
+
   @override
   Widget build(BuildContext context) {
 
-    final place = ModalRoute.of(context)?.settings.arguments as WorldTime;
+    place = place.isNotEmpty ? place : ModalRoute.of(context)?.settings.arguments as Map;
 
-    String bgImage = place.isDayTime ? 'day.jpg' : 'night.png';
+    String bgImage = place['isDayTime'] ? 'day.jpg' : 'night.png';
 
     return Scaffold(
       body: Container(
@@ -32,35 +33,39 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TextButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/choose');
-                  },
-                  icon: Icon(Icons.edit_location),
-                  label: Text('Choose Location'),
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.white10
-                  ),
-                ),
-                SizedBox(height: 60,),
+                SizedBox(height: 100,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                        place.location,
+                      place['location'],
                       style: Theme.of(context).textTheme.headline3!.copyWith(
-                        color: Colors.white
+                        color: place['isDayTime'] ? Colors.black : Colors.white
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 20),
                 Text(
-                    place.time,
+                    place['time'],
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
+                      color: place['isDayTime'] ? Colors.black : Colors.white,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                SizedBox(height: 150,),
+                TextButton.icon(
+                  onPressed: () async {
+                    dynamic result = await Navigator.pushNamed(context, '/choose');
+                    setState(() {
+                      place = result;
+                    });
+                  },
+                  icon: Icon(Icons.edit_location),
+                  label: Text('Choose Location'),
+                  style: TextButton.styleFrom(
+                      primary: place['isDayTime'] ? Colors.black : Colors.white,
+                      backgroundColor: Colors.white12
                   ),
                 ),
               ],

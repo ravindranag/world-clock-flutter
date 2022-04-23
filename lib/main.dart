@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'World Time',
       theme: ThemeData(
         textTheme: GoogleFonts.varelaRoundTextTheme(
-          Theme.of(context).textTheme
-        )
+          ThemeData.dark().textTheme
+        ),
+        primaryColor: Colors.black26
       ),
       initialRoute: '/',
       routes: {
