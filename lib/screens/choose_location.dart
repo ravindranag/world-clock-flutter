@@ -41,10 +41,10 @@ class _ChooseLocationState extends State<ChooseLocation> {
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
         ),
-        title: Text(
+        title: const Text(
             'Choose Location',
         ),
         centerTitle: true,

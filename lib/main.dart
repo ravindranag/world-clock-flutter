@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => Loading(),
-        '/home': (context) => Home(),
-        '/choose': (context) => ChooseLocation()
+        '/': (context) => const Loading(),
+        '/home': (context) => const Home(),
+        '/choose': (context) => const ChooseLocation()
       },
     );
   }

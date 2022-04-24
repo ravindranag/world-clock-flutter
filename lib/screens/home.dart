@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 100,),
+                const SizedBox(height: 100,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                     place['time'],
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.bold
                   ),
                 ),
-                SizedBox(height: 150,),
+                const SizedBox(height: 150,),
                 TextButton.icon(
                   onPressed: () async {
                     dynamic result = await Navigator.pushNamed(context, '/choose');
@@ -61,8 +61,8 @@ class _HomeState extends State<Home> {
                       place = result;
                     });
                   },
-                  icon: Icon(Icons.edit_location),
-                  label: Text('Choose Location'),
+                  icon: const Icon(Icons.edit_location),
+                  label: const Text('Choose Location'),
                   style: TextButton.styleFrom(
                       primary: place['isDayTime'] ? Colors.black : Colors.white,
                       backgroundColor: Colors.white12

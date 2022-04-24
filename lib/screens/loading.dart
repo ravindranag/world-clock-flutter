@@ -16,7 +16,7 @@ class _LoadingState extends State<Loading> {
     WorldTime instance = WorldTime(location: 'India', flag: 'india.png', url: 'Asia/Kolkata');
     await instance.getTime();
 
-    var newInstance = Map();
+    var newInstance = {};
     newInstance['isDayTime'] = instance.isDayTime;
     newInstance['time'] = instance.time;
     newInstance['location'] = instance.location;
@@ -37,7 +37,7 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: SpinKitFadingCube(
           color: Colors.black,
