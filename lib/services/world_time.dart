@@ -12,7 +12,8 @@ class WorldTime {
 
   WorldTime({required this.location, required this.flag, required this.url});
 
-  Future<void> getTime() async {
+  Future <Map> getTime() async {
+    Map place = {};
     try {
       Response response = await get(Uri.parse('http://worldtimeapi.org/api/timezone/$url'));
       Map data = jsonDecode(response.body);
@@ -28,11 +29,21 @@ class WorldTime {
       // print(now);
       time = DateFormat.jm().format(now);
       isDayTime = now.hour > 6 && now.hour < 18 ? true : false;
+
+
+      place['isDayTime'] = isDayTime;
+      place['time'] = time;
+      place['location'] = location;
+      place['flag'] = flag;
       // print(time);
     } catch(e) {
-      // print('Error: $e');
-      time = 'Could not get time';
+      print('Error: $e');
+      place['isDayTime'] = true;
+      place['time'] = 'No Internet!';
+      place['location'] = location;
+      place['flag'] = flag;
     }
+    return place;
   }
 
 }
